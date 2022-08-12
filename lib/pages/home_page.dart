@@ -20,21 +20,15 @@ class _HomePageState extends State<HomePage> {
     final currentContext = _keyBoundary.currentContext;
     final boundary =
         currentContext!.findRenderObject() as RenderRepaintBoundary?;
-    final image = await boundary!.toImage(pixelRatio: 3.0);
+    final image = await boundary!.toImage(
+      pixelRatio: 3.0,
+    );
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-    final _memoryimage = bytes!.buffer.asUint8List();
+
     setState(() {
-      _memoryimage;
+      _memoryimage = bytes!.buffer.asUint8List();
     });
   }
-  // Future<Uint8List> generateImage() async {
-  //   final currentContext = _keyBoundary.currentContext;
-  //   final boundary =
-  //       currentContext!.findRenderObject() as RenderRepaintBoundary?;
-  //   final image = await boundary!.toImage(pixelRatio: 3.0);
-  //   final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-  //   return byteData!.buffer.asUint8List();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +39,15 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
-              children: [Image.memory(_memoryimage!)],
+              children: [
+                Container(
+                  height: 200,
+                  width: 200,
+                  child: _memoryimage != null
+                      ? Image.memory(_memoryimage!)
+                      : Container(),
+                ),
+              ],
             ),
             RepaintBoundary(
               key: _keyBoundary,
@@ -71,8 +73,8 @@ class Carta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
-      height: 150,
+      width: 100,
+      height: 100,
       color: Colors.green,
       child: Center(child: Text("Hello Chio")),
     );
