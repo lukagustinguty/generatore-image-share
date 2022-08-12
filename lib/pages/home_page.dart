@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:typed_data';
@@ -28,6 +30,9 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _memoryimage = bytes!.buffer.asUint8List();
     });
+
+    Directory imagepng = await getApplicationDocumentsDirectory();
+    String imagePath = imagepng.path;
   }
 
   @override
@@ -41,8 +46,8 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 Container(
-                  height: 200,
-                  width: 200,
+                  height: 150,
+                  width: 150,
                   child: _memoryimage != null
                       ? Image.memory(_memoryimage!)
                       : Container(),
