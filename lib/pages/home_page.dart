@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:card_invatation/pages/pagestest.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:typed_data';
@@ -49,17 +49,6 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                Container(
-                  height: 150,
-                  width: 150,
-                  child: _memoryimage != null
-                      ? Image.memory(_memoryimage!)
-                      : Container(),
-                ),
-              ],
-            ),
             RepaintBoundary(
               key: _keyBoundary,
               child: Carta(),
@@ -75,20 +64,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class Carta extends StatelessWidget {
-  const Carta({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      height: 100,
-      color: Colors.green,
-      child: Center(child: Text("TE AMO ROCIO COPA")),
     );
   }
 }
