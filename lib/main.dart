@@ -9,6 +9,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
-        home: HomePage());
+        home: HomePage(Path));
   }
 }

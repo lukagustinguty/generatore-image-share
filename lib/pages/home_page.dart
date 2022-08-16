@@ -9,7 +9,8 @@ import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  final path;
+  HomePage(this.path);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,8 +18,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey _keyBoundary = GlobalKey();
+
   Uint8List? _memoryimage;
-  void generateImage() async {
+  Future generateImage() async {
     final currentContext = _keyBoundary.currentContext;
     final boundary =
         currentContext!.findRenderObject() as RenderRepaintBoundary?;
@@ -32,7 +34,11 @@ class _HomePageState extends State<HomePage> {
     });
 
     Directory imagepng = await getApplicationDocumentsDirectory();
-    String imagePath = imagepng.path;
+    String imagePath = '${imagepng.path}/bank_nation.png';
+    final file = File(imagePath);
+    var path = await file.writeAsBytes(_memoryimage!);
+
+    return path.path;
   }
 
   @override
@@ -59,8 +65,9 @@ class _HomePageState extends State<HomePage> {
               child: Carta(),
             ),
             ElevatedButton(
-                onPressed: () {
-                  generateImage();
+                onPressed: () async {
+                  var path = await generateImage();
+                  Share.shareFiles([path]);
                 },
                 child: Container(
                   child: Text("CREATE CUADRADO"),
@@ -81,7 +88,7 @@ class Carta extends StatelessWidget {
       width: 100,
       height: 100,
       color: Colors.green,
-      child: Center(child: Text("Hello Chio")),
+      child: Center(child: Text("TE AMO ROCIO COPA")),
     );
   }
 }

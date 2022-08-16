@@ -14,3 +14,6 @@ https://github.com/juanleondev/flutter_samples/blob/master/flutter_samples/lib/i
 
 PROBLEMT CODE
 https://www-codewithhussain-com.translate.goog/flutter-null-check-operator-used-on-a-null-value?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es-419&_x_tr_pto=sc
+
+COMO GUARDAR UNA IMAGEN EN EL DISPOSITIVO?
+https://www.mejorcodigo.com/p/33860.html
